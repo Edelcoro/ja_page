@@ -10,6 +10,7 @@
         src: url("Georgia.ttf");
     } body {
         background: whitesmoke;
+        transition: background 0.3s ease;
     } #page {
         width: 928px;
         height: 1224px;
@@ -18,6 +19,8 @@
         padding: 48px;
         border: 1px solid darkgray;
         box-shadow: 2px 3px 6px darkgray;
+        position: relative;
+        transition: background 0.3s ease, color 0.3s ease;
     } h1 {
         font: 48pt/1.0em 'Dancing Script', cursive;
         text-align: center;
@@ -34,11 +37,51 @@
         border: 1px solid dimgray;
         box-shadow: 2px 3px 6px darkgray;
     }
+
+    /* Button & High Contrast Styles */
+    #contrast-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 8px 14px;
+        font: 11pt Georgia, serif;
+        background: #f0f0f0;
+        color: #111;
+        border: 1px solid dimgray;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    #contrast-btn:hover {
+        background: #e0e0e0;
+    }
+    body.high-contrast {
+        background: #000000;
+    }
+    body.high-contrast #page {
+        background: #121212;
+        color: #FFFF00;
+        border-color: #FFFF00;
+        box-shadow: none;
+    }
+    body.high-contrast h1 {
+        text-shadow: none;
+        color: #FFFFFF;
+    }
+    body.high-contrast a {
+        color: #00FFFF;
+    }
+    body.high-contrast #contrast-btn {
+        background: #FFFF00;
+        color: #000000;
+        font-weight: bold;
+        border-color: #FFFFFF;
+    }
 </style>
 </head>
 
 <body>
 <div id="page">
+<button id="contrast-btn" onclick="toggleContrast()">High Contrast</button>
 <h1>Potatoes</h1>
 <h2>Created with <a href="https://chatai.com">ChatAI</a> and Canva</h2>
 <img src="AN440-Potatoes-732x549-thumb-732x549.avif" alt="Potato">
@@ -50,5 +93,17 @@
 </p>
 <img src="https://www.seriouseats.com/thmb/i8QWQ42YmQ2uGheF7g0fBYPPEHk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2017__11__20171031-potato-varieties-vicky-wasik-russet-1-610e2f5a9d20424f8bc4b0154a57ed15.jpg" alt="second potato picture" style="float: none; display: block; margin: 24px auto;">
 </div>
+
+<script>
+function toggleContrast() {
+    document.body.classList.toggle("high-contrast");
+    const btn = document.getElementById("contrast-btn");
+    if (document.body.classList.contains("high-contrast")) {
+        btn.textContent = "Standard Contrast";
+    } else {
+        btn.textContent = "High Contrast";
+    }
+}
+</script>
 </body>
 </html>
